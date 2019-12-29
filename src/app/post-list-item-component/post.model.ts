@@ -1,19 +1,11 @@
 import { Input } from '@angular/core';
 
 export class Post {
-  title: string;
-
-  content: string;
-
-  loveIts: number;
-
-  createdAt: Date;
-
   constructor(
-    title: string,
-    content: string,
-    loveIts: number,
-    createdAt: Date
+    public title: string,
+    public content: string,
+    public loveIts: number,
+    public createdAt: Date
   ) {
     this.title = title;
     this.content = content;
