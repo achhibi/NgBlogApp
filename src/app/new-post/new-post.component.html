@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Nouveau post</h2>
+    <form [formGroup]="postFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          formControlName="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea
+          type="textarea"
+          id="content"
+          class="form-control"
+          formControlName="content"
+        ></textarea>
+      </div>
+
+      <button
+        class="btn btn-success"
+        [disabled]="postFormGroup.invalid"
+        type="submit"
+      >
+        Enregistrer
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div
+  class="card-body"
+  [ngClass]="{
+    'list-group-item': true,
+    'list-group-item-success': postItem.loveIts > 0,
+    'list-group-item-danger': postItem.loveIts < 0
+  }"
+>
+  <h4 class="card-title">
+    {{ postItem.title }}
+    <small class="float-right">{{
+      postItem.createdAt | date: 'MM/dd/yyyy h:mm a'
+    }}</small>
+  </h4>
+  <p class="card-text">{{ postItem.content }}</p>
+  <button type="button" class="btn btn-success" (click)="upVote()">
+    Love it
+  </button>
+  <button type="button" class="btn btn-danger" (click)="downVote()">
+    Don't love it
+  </button>
+  <button type="button" class="btn btn-danger pull-right" (click)="delete()">
+    Supprimer
+  </button>
+</div>

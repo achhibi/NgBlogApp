@@ -1,32 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { Post } from './post-list-item-component/post.model';
+import { PostService } from './services/post.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from './models/post.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'NgBlogApp';
   @Input()
-  posts = [
-    new Post(
-      'Mon premier post',
-      'Formation Angular OpenClassroom',
-      2,
-      new Date('2011/10/22')
-    ),
-    new Post(
-      'Mon deuxième post',
-      'Formation Springboot spring-clout OpenClassroom',
-      1,
-      new Date('2011/10/22 22:00')
-    ),
-    new Post(
-      'Encore un post',
-      'Toutes mes formation sur openclassroom',
-      0,
-      new Date('2011/10/22 15:00')
-    )
-  ];
+  posts = [];
+  postsSubscription: Subscription;
+  constructor(private postService: PostService) {}
+  ngOnInit(): void {
+    this.postsSubscription = this.postService.postsSubject.subscribe(
+      (posts: Post[]) => {
+        this.posts = posts;
+      }
+    );
+    this.postService.emitPosts();
+  }
 }
